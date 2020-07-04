@@ -1,0 +1,352 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+
+<main>
+  <section class="container">
+    <div class="site-content">
+      <div class="posts" style="">
+
+        <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
+          <div class="post-image">
+            <div>
+              <img src=" {{ post.thumbnail.url }} " class="img" alt="blog1">
+            </div>
+            <div style="padding:16px 30px;" class="post-info flex-row">
+              <span>
+
+                <i class="">
+                  <img style="width:20px; height:20px; 
+                                  border-radius:100%; float:left;margin-left:-15px;"
+                    src="{{ post.author.profile_picture.url }}">
+                </i>&nbsp;&nbsp; {{ post.author }}
+              </span>
+              <span>
+                <i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp; {{ post.timestamp}}
+              </span>
+              <span>{{ post.comments.count }} Comments</span>
+            </div>
+          </div>
+          <div class="post-title">
+            <a href=""> {{ post.title }}</a>
+            <p style="text-align: justify;">
+              
+              {% if post.incredient_pdf %}
+      <div style="">
+        <div class="incredient" style=" width:20rem; height:35rem;overflow-x: scroll;overflow-y: scroll; float: right" >
+          <img src=" {{ post.incredient_pdf.url }} " class="img" alt="blog1">
+        </div>
+      </div>
+              
+              {% endif %}
+                
+              
+              
+              {{ post.overview|linebreaks }}
+              
+            </p>
+            <h5 style="display: flex; flex-direction: row; width: 100%; "> Was this post helpful?
+              <div class="like-unlike">
+                <form style="display: flex; flex-direction: row; margin-top:-.2rem;"
+                  action="{% url 'like-post' post.pk %}" method="POST">
+                  {% csrf_token %}
+                  <!-- <div style="display: flex; flex-direction: column; align-items: center; margin-right: 1rem;" class="like">
+                              <button type="submit" name="post_id" value=" {{post.id}} " style="border:none;background:none;">
+                              <i style=" border: 1px solid #ddd; padding:.3rem; margin-bottom:.2rem;" class="fa fa-thumbs-up" aria-hidden="true"></i>
+                            </button>
+                              <span> {{ total_likes }}  </span>
+                            </div>
+                            
+
+                            <div style="display: flex; flex-direction: column; align-items: center; margin-right: 1rem;" class="like">
+                              <button type="submit" name="post_unlike_id" value=" {{post.id}} " style="border:none;background:none;">
+                              <i style=" border: 1px solid #ddd; padding:.3rem; margin-bottom:.2rem;" class="fa fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                              <span> {{ total_unlikes }}  </span>
+                            </div> -->
+
+                  {% if liked %}
+                  <div style="display: flex; flex-direction: row; align-items: center; margin-right: 1rem;"
+                    class="like">
+                    <button type="submit" name="post_id" value=" {{post.id}} " style="border:none;background:none;">
+                      <i style=" border: 1px solid #ddd; padding:.3rem; margin-bottom:.2rem;" class="fa fa-thumbs-down"
+                        aria-hidden="true"></i>
+                    </button>
+                    <span> {{ total_likes }} likes </span>
+                  </div>
+
+
+
+                  {% else %}
+                  <div style="display: flex; flex-direction: row; align-items: center; margin-right: 1rem;"
+                    class="like">
+                    <button type="submit" name="post_id" value=" {{post.id}} " style="border:none;background:none;">
+                      <i style=" border: 1px solid #ddd; padding:.3rem; margin-bottom:.2rem;" class="fa fa-thumbs-up"
+                        aria-hidden="true"></i>
+                    </button>
+                    <span> {{ total_likes }} likes </span>
+                  </div>
+
+
+                  {% endif %}
+                </form>
+              </div>
+            </h5>
+
+            
+          </div>
+        </div>
+        <hr>
+
+        <header>
+          <!-- <h3 class="h6">Post Comments<span class="no-of-comments">({{ post.approve_comments.count }})</span></h3> -->
+        </header>
+
+
+        <div class="post-comments">
+
+          {% for comment in post.comments.all %}
+
+          <br>
+
+
+          {% if  comment.approve_comment %}
+          <div class="comment">
+            <div class="comment-header d-flex justify-content-between">
+              <div class="user d-flex align-items-center">
+                <!-- <div class="image">
+                        {% if comment.user.author %}
+                        <img src="{{ comment.user.author.profile_picture.url }}" alt="..."
+                          class="img-fluid rounded-circle">
+                        {% else %}
+                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                        {% endif %}
+                      </div> -->
+                <div class="comment-body">
+                  <p>{{ comment.content }}</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="title"><strong>Posted By:{{ request.user }}</strong> <br><span
+                class="date">{{ comment.timestamp|timesince }} ago</span></div>
+
+
+          </div>
+
+          {% endif %}
+
+          {% if user.is_authenticated or user.is_staff and not comment.approve_comment %}
+
+
+
+          <div class="comment">
+            <div class="comment-header d-flex justify-content-between">
+              <div class="user d-flex align-items-center">
+                <!-- <div class="image">
+                        {% if comment.user.author %}
+                        <img src="{{ comment.user.author.profile_picture.url }}" alt="..."
+                          class="img-fluid rounded-circle">
+                        {% else %}
+                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
+                        {% endif %}
+                      </div> -->
+                <div class="comment-body">
+                  <p>{{ comment.content }}</p>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="title"><strong>{{ request.user }}</strong><span class="date">{{ comment.timestamp|timesince }}
+                ago</span></div>
+
+
+          </div>
+
+          <a href=" {% url 'comment-approve' pk=post.pk %} "> Add comment </a>
+          <a href=" {% url 'comment-remove' pk=post.pk %} "> Remove comment </a>
+
+          {% endif %}
+
+          {% endfor %}
+        </div>
+
+        <div class="add-comment">
+          <header>
+            <h3 class="h6">Leave a reply</h3>
+          </header>
+          <form method="POST" action="." class="form-control">
+            {% csrf_token %}
+            <div class="row">
+              <div class="form-control col-md-12" ">
+                      <div class=" fb-comments" data-href="http://127.0.0.1:8000/post/{{post.pk}}" data-numposts="5"
+                data-width=""></div>
+
+
+              <!-- {{ form|crispy }} -->
+            </div>
+            <div class="form-group col-md-12">
+              <!-- <button style="margin: 20px 0px;" type="submit" class="btn form-btn">Submit Comment</button> -->
+            </div>
+        </div>
+        </form>
+
+        <div style="margin: 20px auto 20px 0;" class="fb-share-button" data-href="http://127.0.0.1:8000/post/9/"
+          data-layout="button_count" data-size="large"><a target="_blank"
+            href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2Fpost%2F9%2F&amp;src=sdkpreparse"
+            class="fb-xfbml-parse-ignore">Share</a></div>
+
+
+            <div class="blog">
+              <header>
+                <h3 class="h6">Related Post</h3>
+              </header>
+              <h2 class="latest-post">  </h2>
+              <div class="container" style="">
+      
+                {% for related in related_post %}
+                <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
+                  <img src="{{ related.thumbnail.url }}" alt="post-1">
+                  <div class="blog-title">
+                    <h3> <a href=" {{related.get_absolute_url }} ">  {{ related.title|truncatechars:25 }} </a>  </h3>
+                    <!-- <button class="btn btn-blog"> {{ related.categories }} </button>
+                              <span>2 minutes</span> -->
+                  </div>
+                </div>
+                {% endfor %}
+      
+              </div>
+            </div>
+
+      </div>
+
+    </div>
+
+    <aside class="sidebar">
+      <div class="category">
+        <h2>Category</h2>
+        <ul class="category-list">
+
+          {% for cat in category_count %}
+          <li class="list-items" data-aos="fade-left" data-aos-delay="100">
+
+
+            {% if 'Cottonseed oil' in cat.categories__title %}
+            <a href=" {% url 'CottonseedOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Coconut Oil' in cat.categories__title %}
+            <a href=" {% url 'CoconutOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Corn Oil' in cat.categories__title %}
+            <a href=" {% url 'CornOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Canola Oil' in cat.categories__title %}
+            <a href=" {% url 'CanolaOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Olive Oil' in cat.categories__title %}
+            <a href=" {% url 'OliveOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Palm Oil' in cat.categories__title %}
+            <a href=" {% url 'PalmOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Peanut Oil' in cat.categories__title %}
+            <a href=" {% url 'PeanutOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Rapeseed Oil' in cat.categories__title %}
+            <a href=" {% url 'RapeseedOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+            {% if 'Sunflower Oil' in cat.categories__title %}
+            <a href=" {% url 'SunflowerOil' %} "> {{ cat.categories__title }}</a>
+            <span>( {{ cat.categories__title__count }} )</span>
+            {% endif %}
+
+          </li>
+
+          {% endfor %}
+
+        </ul>
+      </div>
+      <div class="popular-post">
+        <h2>Recent Post</h2>
+
+
+        {% for obj in recent %}
+        <div class="post-content" data-aos="flip-up" data-aos-delay="200">
+          <div class="post-image">
+            <div>
+              <img src=" {{ obj.thumbnail.url }} " class="img" alt="blog1">
+            </div>
+            <div class="post-info flex-row">
+              <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;
+                {{ obj.timestamp|timesince}}
+              </span>
+              <span>2 Comments</span>
+            </div>
+          </div>
+          <div class="post-title">
+            <a href=" {% url 'post-detail' pk=obj.pk %} "> {{ obj.title }} </a>
+          </div>
+        </div>
+        {% endfor %}
+
+
+
+      </div>
+
+      <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
+        <h2>Newsletter</h2>
+        <div class="form-element">
+          <input type="text" class="input-element" placeholder="Email">
+          <button class="btn form-btn">Subscribe</button>
+        </div>
+      </div>
+      <!-- <div class="popular-tags">
+                  <h2>Popular Tags</h2>
+                  <div class="tags flex-row">
+                      <span class="tag" data-aos="flip-up" data-aos-delay="100">Software</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="200">technology</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="300">travel</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="400">illustration</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="500">design</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="600">lifestyle</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="700">love</span>
+                      <span class="tag" data-aos="flip-up" data-aos-delay="800">project</span>
+                  </div>
+              </div> -->
+    </aside>
+    </div>
+  </section>
+</main>
+
+
+
+{% endblock content %}
+<!-- fas fa-user text-gray -->
+
+
+
+
+<!-- <div>
+            <a href="{% url 'post-update' pk=post.pk %}">Update</a>
+            <a href="{% url 'post-delete' pk=post.pk %}">Delete</a>
+          </div> -->

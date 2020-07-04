@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blooger</title>
+
+     <!-- Font Awesome Icons -->
+     <link rel="stylesheet" href="{% static './css/all.css' %}">
+     <!-- --------- Owl-Carousel ------------------->
+     <link rel="stylesheet" href="{% static './css/owl.carousel.min.css' %}">
+     <link rel="stylesheet" href="{% static './css/owl.theme.default.min.css' %}">
+     <!-- ------------ AOS Library ------------------------- -->
+     <link rel="stylesheet" href="{% static './css/aos.css' %}">
+     <!-- Custom Style   -->
+     <link rel="stylesheet" href="{% static './css/Style.css' %}">
+
+     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+
+      {% block extrahead %}
+        
+      {% endblock extrahead %}
+</head>
+
+<body>
+    
+    <!-- ----------------------------  Navigation ---------------------------------------------- -->
+
+    <nav class="nav">
+        <div class="nav-menu flex-row">
+            <div class="nav-brand">
+                <a href=" {% url 'home' %} " class="text-gray">Blooger</a>
+            </div>
+            <div class="toggle-collapse">
+                <div class="toggle-icons">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+            <div>
+                <ul class="nav-items">
+                    <li class="nav-link">
+                        <a href=" {% url 'home' %} ">Home</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Nutrition</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Major Oil</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Essential oil</a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="social text-gray">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ------------x---------------  Navigation --------------------------x------------------- -->
+
+
+{% block content %}
+    
+{% endblock content %}
+    
+
+    <!-- --------------------------- Footer ---------------------------------------- -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="about-us" data-aos="fade-right" data-aos-delay="200">
+                <h2>About us</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia atque nemo ad modi officiis
+                    iure, autem nulla tenetur repellendus.</p>
+            </div>
+            <div class="newsletter" data-aos="fade-right" data-aos-delay="200">
+                <h2>Newsletter</h2>
+                <p>Stay update with our latest</p>
+                <div class="form-element">
+                    <input type="text" placeholder="Email"><span><i class="fas fa-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="instagram" data-aos="fade-left" data-aos-delay="200">
+                <h2> Like on Facebook </h2>
+                <div class="fb-page" 
+  data-href="https://www.facebook.com/facebook"
+  data-width="380" 
+  data-hide-cover="false"
+  data-show-facepile="false"></div>
+                <!-- <div class="flex-row">
+                    <img src="./assets/instagram/thumb-card3.png" alt="insta1">
+                    <img src="./assets/instagram/thumb-card4.png" alt="insta2">
+                    <img src="./assets/instagram/thumb-card5.png" alt="insta3">
+                </div>
+                <div class="flex-row">
+                    <img src="./assets/instagram/thumb-card6.png" alt="insta4">
+                    <img src="./assets/instagram/thumb-card7.png" alt="insta5">
+                    <img src="./assets/instagram/thumb-card8.png" alt="insta6">
+                </div> -->
+            </div>
+            <div class="follow" data-aos="fade-left" data-aos-delay="200">
+                <h2>Follow us</h2>
+                <p>Let us be Social</p>
+                <div>
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="rights flex-row">
+            <h4 class="text-gray">
+                Copyright ©2020 All rights reserved | made by
+                <a href="www.youtube.com/c/" target="_black">Mainul Islam <i class="fab fa-youtube"></i>
+                    Channel</a>
+            </h4>
+        </div>
+        <div class="move-up">
+            <span><i class="fas fa-arrow-circle-up fa-2x"></i></span>
+        </div>
+    </footer>
+
+    <!-- -------------x------------- Footer --------------------x------------------- -->
+
+     <!-- Jquery Library file -->
+     <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
+     <!-- --------- Owl-Carousel js ------------------->
+     <script src="{% static './js/owl.carousel.min.js' %}"></script>
+     <!-- ------------ AOS js Library  ------------------------- -->
+     <script src="{% static './js/aos.js' %}"></script>
+     <!-- Custom Javascript file -->
+     <script src="{% static './js/main.js' %}"></script>
+
+
+</body>
+
+</html>
