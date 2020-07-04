@@ -3,266 +3,190 @@
 
 
 {% block content %}
-    
 
-    <!----------------------------- Main Site Section ------------------------------>
 
-    <main>
+<!----------------------------- Main Site Section ------------------------------>
 
-        <!------------------------ Site Title ---------------------->
+<main>
 
-        <!-- <section class="site-title">
-            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
-                <h3>Tours & Travels</h3>
-                <h1>Amazing Place on Earth</h1>
-                <button class="btn">Explore</button>
-            </div>
-        </section> -->
 
-        <!------------x----------- Site Title ----------x----------->
-
-        <!-- --------------------- Blog Carousel ----------------- -->
-
-        <!-- <section>
-
-            <div class="blog">
-           
-                <div class="container">
-<h1 class="latest-post"> Latest Post </h1>
-                    <div class="owl-carousel owl-theme blog-post">
-
-                        <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                            <img src="./assets/Blog-post/post-1.jpg" alt="post-1">
-                            <div class="blog-title">
-                                <h3>London Fashion week's continued the evolution</h3>
-                                <button class="btn btn-blog">Fashion</button>
-                                <span>2 minutes</span>
-                            </div>
+    <!-- ---------------------- Site Content -------------------------->
+    <h2> {{ category.title }} </h2>
+    <section class="container">
+        <div class="site-content">
+            <div class="posts">
+                {% for obj in object_list %}
+                <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="post-image">
+                        <div>
+                            <img src="{{ obj.thumbnail.url }}" class="img" alt="blog1">
                         </div>
-                        <div class="blog-content" data-aos="fade-in" data-aos-delay="200">
-                            <img src="./assets/Blog-post/post-3.jpg" alt="post-1">
-                            <div class="blog-title">
-                                <h3>London Fashion week's continued the evolution</h3>
-                                <button class="btn btn-blog">Fashion</button>
-                                <span>2 minutes</span>
-                            </div>
-                        </div>
-                        <div class="blog-content" data-aos="fade-left" data-aos-delay="200">
-                            <img src="./assets/Blog-post/post-2.jpg" alt="post-1">
-                            <div class="blog-title">
-                                <h3>London Fashion week's continued the evolution</h3>
-                                <button class="btn btn-blog">Fashion</button>
-                                <span>2 minutes</span>
-                            </div>
-                        </div>
-                        <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                            <img src="./assets/Blog-post/post-5.png" alt="post-1">
-                            <div class="blog-title">
-                                <h3>London Fashion week's continued the evolution</h3>
-                                <button class="btn btn-blog">Fashion</button>
-                                <span>2 minutes</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="owl-navigation">
-                        <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
-                        <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-        <!-- ----------x---------- Blog Carousel --------x-------- -->
-
-        <!-- ---------------------- Site Content -------------------------->
-<h2> {{ category.title }} </h2>
-        <section class="container">
-            <div class="site-content">
-                <div class="posts">
-                    {% for obj in object_list %}
-                    <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="post-image">
-                            <div>
-                                <img src="{{ obj.thumbnail.url }}" class="img" alt="blog1">
-                            </div>
-                            <div class="post-info flex-row">
-                                <span>
-                                    <i class=""> 
-                                        <img style="width:20px; 
+                        <div class="post-info flex-row">
+                            <span>
+                                <i class="">
+                                    <img style="width:20px; 
                                                     height:20px; 
                                                     border-radius:100%;
                                                     float:left;
-                                                    margin-left:-15px;"
-                                                    src="{{ obj.author.profile_picture.url }}">
-                                                </i>&nbsp;&nbsp; {{ obj.author }} </span>
-                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp; {{ obj.timestamp }} </span>
-                                <span>2 Commets</span>
-                            </div>
-                        </div>
-                        <div class="post-title">
-                            <a href=" {{ obj.get_absolute_url }} "> {{ obj.title }} </a>
-                            <p>
-                                {{ obj.overview|linebreaks|truncatechars:200 }}
-                            </p>
-                            <button class="btn post-btn"> <a href=" {{ obj.get_absolute_url }} ">Read More  </a> <i class="fas fa-arrow-right"></i></button>
+                                                    margin-left:-15px;" src="{{ obj.author.profile_picture.url }}">
+                                </i>&nbsp;&nbsp; {{ obj.author }} </span>
+                            <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp; {{ obj.timestamp }} </span>
+                            <span>2 Commets</span>
                         </div>
                     </div>
-                    <hr>
-                    {% endfor %}
+                    <div class="post-title">
+                        <a href=" {{ obj.get_absolute_url }} "> {{ obj.title }} </a>
+                        <p>
+                            {{ obj.overview|linebreaks|truncatechars:200 }}
+                        </p>
+                        <button class="btn post-btn"> <a href=" {{ obj.get_absolute_url }} ">Read More </a> <i
+                                class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
 
-                    
-                    {% if is_paginated %}
-                       
-                        
-                   
-                    <div class="pagination flex-row">
-                          
+
+                {% if is_paginated %}
+
+
+
+                <div class="pagination flex-row">
+
                     {% if page_obj.has_previous %}
                     <a href=" ?page=1 " class="pages">First</a>
                     <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i></a>
                     {% endif %}
-                        
+
 
                     <a href=" ?page={{ page_obj.number }} " class="pages"> {{ page_obj.number }} </a>
 
                     {% for num in page_obj.paginator.page_range %}
-                      
-                      {% if page_obj.number == num %}
-                          
-                      {% endif %}
-                          
+
+                    {% if page_obj.number == num %}
+
+                    {% endif %}
+
                     {% endfor %}
 
                     {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-chevron-right"></i></a>
                     <a href=" ?page= {{ page_obj.paginator.num_pages }} " class="pages">Last</a>
-                    
-                    {% endif %}
-                    </div>
-                     
+
                     {% endif %}
                 </div>
-                <aside class="sidebar">
-                    <div class="category">
-                        <h2>Category</h2>
-                        <ul class="category-list">
-                            
-                            {% for cat in category_count %}
-                            <li class="list-items" data-aos="fade-left" data-aos-delay="100">
-                                
-                                
-                                {% if 'Cottonseed oil' in cat.categories__title %}
-                                <a href=" {% url 'CottonseedOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
 
-                                {% if 'Coconut Oil' in cat.categories__title %}
-                                <a href=" {% url 'CoconutOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-                                
-                                {% if 'Corn Oil' in cat.categories__title %}
-                                <a href=" {% url 'CornOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Canola Oil' in cat.categories__title %}
-                                <a href=" {% url 'CanolaOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Olive Oil' in cat.categories__title %}
-                                <a href=" {% url 'OliveOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Palm Oil' in cat.categories__title %}
-                                <a href=" {% url 'PalmOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Peanut Oil' in cat.categories__title %}
-                                <a href=" {% url 'PeanutOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Rapeseed Oil' in cat.categories__title %}
-                                <a href=" {% url 'RapeseedOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                                {% if 'Sunflower Oil' in cat.categories__title %}
-                                <a href=" {% url 'SunflowerOil' %} "> {{ cat.categories__title }}</a>
-                                <span>( {{ cat.categories__title__count }} )</span>
-                                {% endif %}
-
-                            </li>
-                            
-                            {% endfor %}
-                                
-                                
-                            
-                            
-                        </ul>
-                    </div>
-                    <div class="popular-post">
-                        <h2>Recent Post</h2>
-
-                        
-                        {% for obj in recent %}
-                        <div class="post-content" data-aos="flip-up" data-aos-delay="200">
-                            <div class="post-image">
-                                <div>
-                                    <img src=" {{ obj.thumbnail.url }} " class="img" alt="blog1">
-                                </div>
-                                <div class="post-info flex-row">
-                                    <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;
-                                        {{ obj.timestamp|timesince}}
-                                    </span>
-                                    <span>2 Comments</span>
-                                </div>
-                            </div>
-                            <div class="post-title">
-                                <a href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                            
-                       
-                        
-                    </div>
-                    <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
-                        <h2>Newsletter</h2>
-                        <div class="form-element">
-                            <input type="text" class="input-element" placeholder="Email">
-                            <button class="btn form-btn">Subscribe</button>
-                        </div>
-                    </div>
-                    <!-- <div class="popular-tags">
-                        <h2>Popular Tags</h2>
-                        <div class="tags flex-row">
-                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Software</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="200">technology</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="300">travel</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="400">illustration</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="500">design</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="600">lifestyle</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="700">love</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="800">project</span>
-                        </div>
-                    </div> -->
-                </aside>
+                {% endif %}
             </div>
-        </section>
+            <aside class="sidebar">
+                <div class="category">
+                    <h2>Category</h2>
+                    <ul class="category-list">
 
-        <!-- -----------x---------- Site Content -------------x------------>
+                        {% for cat in category_count %}
+                        <li class="list-items" data-aos="fade-left" data-aos-delay="100">
 
-    </main>
 
-    <!---------------x------------- Main Site Section ---------------x-------------->
+                            {% if 'Cottonseed oil' in cat.categories__title %}
+                            <a href=" {% url 'CottonseedOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Coconut Oil' in cat.categories__title %}
+                            <a href=" {% url 'CoconutOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Corn Oil' in cat.categories__title %}
+                            <a href=" {% url 'CornOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Canola Oil' in cat.categories__title %}
+                            <a href=" {% url 'CanolaOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Olive Oil' in cat.categories__title %}
+                            <a href=" {% url 'OliveOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Palm Oil' in cat.categories__title %}
+                            <a href=" {% url 'PalmOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Peanut Oil' in cat.categories__title %}
+                            <a href=" {% url 'PeanutOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Rapeseed Oil' in cat.categories__title %}
+                            <a href=" {% url 'RapeseedOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                            {% if 'Sunflower Oil' in cat.categories__title %}
+                            <a href=" {% url 'SunflowerOil' %} "> {{ cat.categories__title }}</a>
+                            <span>( {{ cat.categories__title__count }} )</span>
+                            {% endif %}
+
+                        </li>
+
+                        {% endfor %}
+
+
+
+
+                    </ul>
+                </div>
+                <div class="popular-post">
+                    <h2>Recent Post</h2>
+
+
+                    {% for obj in recent %}
+                    <div class="post-content" data-aos="flip-up" data-aos-delay="200">
+                        <div class="post-image">
+                            <div>
+                                <img src=" {{ obj.thumbnail.url }} " class="img" alt="blog1">
+                            </div>
+                            <div class="post-info flex-row">
+                                <span><i class="fas fa-calendar-alt text-gray"></i>&nbsp;&nbsp;
+                                    {{ obj.timestamp|timesince}}
+                                </span>
+                                <span>2 Comments</span>
+                            </div>
+                        </div>
+                        <div class="post-title">
+                            <a href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+                <div class="newsletter" data-aos="fade-up" data-aos-delay="300">
+                    <h2>Newsletter</h2>
+                    <div class="form-element">
+                        <input type="text" class="input-element" placeholder="Email">
+                        <button class="btn form-btn">Subscribe</button>
+                    </div>
+                </div>
+
+
+            </aside>
+        </div>
+    </section>
+
+    <!-- -----------x---------- Site Content -------------x------------>
+
+</main>
+
+<!---------------x------------- Main Site Section ---------------x-------------->
 
 
 
 
 {% endblock content %}
-    

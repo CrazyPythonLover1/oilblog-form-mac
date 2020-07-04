@@ -116,14 +116,7 @@
           <div class="comment">
             <div class="comment-header d-flex justify-content-between">
               <div class="user d-flex align-items-center">
-                <!-- <div class="image">
-                        {% if comment.user.author %}
-                        <img src="{{ comment.user.author.profile_picture.url }}" alt="..."
-                          class="img-fluid rounded-circle">
-                        {% else %}
-                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
-                        {% endif %}
-                      </div> -->
+            
                 <div class="comment-body">
                   <p>{{ comment.content }}</p>
                 </div>
@@ -146,14 +139,7 @@
           <div class="comment">
             <div class="comment-header d-flex justify-content-between">
               <div class="user d-flex align-items-center">
-                <!-- <div class="image">
-                        {% if comment.user.author %}
-                        <img src="{{ comment.user.author.profile_picture.url }}" alt="..."
-                          class="img-fluid rounded-circle">
-                        {% else %}
-                        <img src="{% static 'img/user.svg' %}" alt="..." class="img-fluid rounded-circle">
-                        {% endif %}
-                      </div> -->
+               
                 <div class="comment-body">
                   <p>{{ comment.content }}</p>
                 </div>
@@ -320,19 +306,7 @@
           <button class="btn form-btn">Subscribe</button>
         </div>
       </div>
-      <!-- <div class="popular-tags">
-                  <h2>Popular Tags</h2>
-                  <div class="tags flex-row">
-                      <span class="tag" data-aos="flip-up" data-aos-delay="100">Software</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="200">technology</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="300">travel</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="400">illustration</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="500">design</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="600">lifestyle</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="700">love</span>
-                      <span class="tag" data-aos="flip-up" data-aos-delay="800">project</span>
-                  </div>
-              </div> -->
+  
     </aside>
     </div>
   </section>
@@ -341,12 +315,3 @@
 
 
 {% endblock content %}
-<!-- fas fa-user text-gray -->
-
-
-
-
-<!-- <div>
-            <a href="{% url 'post-update' pk=post.pk %}">Update</a>
-            <a href="{% url 'post-delete' pk=post.pk %}">Delete</a>
-          </div> -->

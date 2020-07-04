@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Blooger</title>
 
-     <!-- Font Awesome Icons -->
-     <link rel="stylesheet" href="{% static './css/all.css' %}">
-     <!-- --------- Owl-Carousel ------------------->
-     <link rel="stylesheet" href="{% static './css/owl.carousel.min.css' %}">
-     <link rel="stylesheet" href="{% static './css/owl.theme.default.min.css' %}">
-     <!-- ------------ AOS Library ------------------------- -->
-     <link rel="stylesheet" href="{% static './css/aos.css' %}">
-     <!-- Custom Style   -->
-     <link rel="stylesheet" href="{% static './css/Style.css' %}">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{% static './css/all.css' %}">
+    <!-- --------- Owl-Carousel ------------------->
+    <link rel="stylesheet" href="{% static './css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static './css/owl.theme.default.min.css' %}">
+    <!-- ------------ AOS Library ------------------------- -->
+    <link rel="stylesheet" href="{% static './css/aos.css' %}">
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="{% static './css/Style.css' %}">
 
-     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
+    <script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0"></script>
 
-      {% block extrahead %}
-        
-      {% endblock extrahead %}
+    {% block extrahead %}
+
+    {% endblock extrahead %}
 </head>
 
 <body>
-    
+
     <!-- ----------------------------  Navigation ---------------------------------------------- -->
 
     <nav class="nav">
@@ -69,10 +71,10 @@
     <!-- ------------x---------------  Navigation --------------------------x------------------- -->
 
 
-{% block content %}
-    
-{% endblock content %}
-    
+    {% block content %}
+
+    {% endblock content %}
+
 
     <!-- --------------------------- Footer ---------------------------------------- -->
 
@@ -92,11 +94,8 @@
             </div>
             <div class="instagram" data-aos="fade-left" data-aos-delay="200">
                 <h2> Like on Facebook </h2>
-                <div class="fb-page" 
-  data-href="https://www.facebook.com/facebook"
-  data-width="380" 
-  data-hide-cover="false"
-  data-show-facepile="false"></div>
+                <div class="fb-page" data-href="https://www.facebook.com/facebook" data-width="380"
+                    data-hide-cover="false" data-show-facepile="false"></div>
                 <!-- <div class="flex-row">
                     <img src="./assets/instagram/thumb-card3.png" alt="insta1">
                     <img src="./assets/instagram/thumb-card4.png" alt="insta2">
@@ -133,14 +132,14 @@
 
     <!-- -------------x------------- Footer --------------------x------------------- -->
 
-     <!-- Jquery Library file -->
-     <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
-     <!-- --------- Owl-Carousel js ------------------->
-     <script src="{% static './js/owl.carousel.min.js' %}"></script>
-     <!-- ------------ AOS js Library  ------------------------- -->
-     <script src="{% static './js/aos.js' %}"></script>
-     <!-- Custom Javascript file -->
-     <script src="{% static './js/main.js' %}"></script>
+    <!-- Jquery Library file -->
+    <script src="{% static './js/Jquery3.4.1.min.js' %}"></script>
+    <!-- --------- Owl-Carousel js ------------------->
+    <script src="{% static './js/owl.carousel.min.js' %}"></script>
+    <!-- ------------ AOS js Library  ------------------------- -->
+    <script src="{% static './js/aos.js' %}"></script>
+    <!-- Custom Javascript file -->
+    <script src="{% static './js/main.js' %}"></script>
 
 
 </body>

@@ -1,17 +1,7 @@
 {% extends 'base.html' %}
 
 {% block extrahead %}
-        <style>
-    /* main .blog-post .blog-content{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 80%;
-    margin: 3rem 2rem;
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
-} */
 
-        </style>
 {% endblock extrahead %}
 
 {% block content %}
@@ -21,65 +11,13 @@
 
 <main>
 
-    <!------------------------ Site Title ---------------------->
 
-    <!-- <section class="site-title">
-            <div class="site-background" data-aos="fade-up" data-aos-delay="100">
-                <h3>Tours & Travels</h3>
-                <h1>xblog">
-
-            <div class="container">
-                <h1 class="latest-post"> Latest Post </h1>
-                <div class="owl-carousel owl-theme blog-post">
-
-                    <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                        <img src="./assets/Blog-post/post-1.jpg" alt="post-1">
-                        <div class="blog-title">
-                            <h3>London Fashion week's continued the evolution</h3>
-                            <button class="btn btn-blog">Fashion</button>
-                            <span>2 minutes</span>
-                        </div>
-                    </div>
-                    <div class="blog-content" data-aos="fade-in" data-aos-delay="200">
-                        <img src="./assets/Blog-post/post-3.jpg" alt="post-1">
-                        <div class="blog-title">
-                            <h3>London Fashion week's continued the evolution</h3>
-                            <button class="btn btn-blog">Fashion</button>
-                            <span>2 minutes</span>
-                        </div>
-                    </div>
-                    <div class="blog-content" data-aos="fade-left" data-aos-delay="200">
-                        <img src="./assets/Blog-post/post-2.jpg" alt="post-1">
-                        <div class="blog-title">
-                            <h3>London Fashion week's continued the evolution</h3>
-                            <button class="btn btn-blog">Fashion</button>
-                            <span>2 minutes</span>
-                        </div>
-                    </div>
-                    <div class="blog-content" data-aos="fade-right" data-aos-delay="200">
-                        <img src="./assets/Blog-post/post-5.png" alt="post-1">
-                        <div class="blog-title">
-                            <h3>London Fashion week's continued the evolution</h3>
-                            <button class="btn btn-blog">Fashion</button>
-                            <span>2 minutes</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="owl-navigation">
-                    <span class="owl-nav-prev"><i class="fas fa-long-arrow-alt-left"></i></span>
-                    <span class="owl-nav-next"><i class="fas fa-long-arrow-alt-right"></i></span>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- ----------x---------- Blog Carousel --------x-------- -->
 
     <!-- ---------------------- Site Content -------------------------->
 
     <section class="container">
         <div class="site-content">
-            <div class="posts"style="border-right: 1px solid #ddd;" >
+            <div class="posts" style="border-right: 1px solid #ddd;">
                 {% for obj in object_list %}
                 <div class="post-content" data-aos="zoom-in" data-aos-delay="200">
                     <div class="post-image">
@@ -111,45 +49,44 @@
                 </div>
                 <hr>
                 {% endfor %}
-                
-                
+
+
 
                 <div class="pagination flex-row">
-                    
+
                     {% if page_obj.has_previous %}
                     <!-- <a href=" ?page=1 " class="pages">First</a> -->
                     <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i></a>
                     {% endif %}
-                        
+
 
                     <a href=" ?page={{ page_obj.number }} " class="pages"> {{ page_obj.number }} </a>
-                    <a href="?page={{ page_obj.next_page_number}}"
-                class="pages ">{{ page_obj.next_page_number }}</a>
-                    
+                    <a href="?page={{ page_obj.next_page_number}}" class="pages ">{{ page_obj.next_page_number }}</a>
+
 
                     {% for num in page_obj.paginator.page_range %}
-                      
-                      {% if page_obj.number == num %}
-                          
-                      {% endif %}
-                          
+
+                    {% if page_obj.number == num %}
+
+                    {% endif %}
+
                     {% endfor %}
 
                     {% if page_obj.has_next %}
                     <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-chevron-right"></i></a>
                     <!-- <a href=" ?page= {{ page_obj.paginator.num_pages }} " class="pages">Last</a> -->
-                    
+
                     {% endif %}
-                    
-                </div>  
-                
-                
-    
+
+                </div>
+
+
+
             </div>
 
-            
-               
-        
+
+
+
             <aside class="sidebar">
                 <div class="category">
                     <h2>Category</h2>
@@ -246,26 +183,14 @@
                         <button class="btn form-btn">Subscribe</button>
                     </div>
                 </div>
-                <!-- <div class="popular-tags">
-                        <h2>Popular Tags</h2>
-                        <div class="tags flex-row">
-                            <span class="tag" data-aos="flip-up" data-aos-delay="100">Software</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="200">technology</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="300">travel</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="400">illustration</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="500">design</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="600">lifestyle</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="700">love</span>
-                            <span class="tag" data-aos="flip-up" data-aos-delay="800">project</span>
-                        </div>
-                    </div> -->
+               
             </aside>
         </div>
-      
+
 
     </section>
 
-    
+
     <!-- -----------x---------- Site Content -------------x------------>
 
 </main>
