@@ -208,8 +208,8 @@ class PostDetailView(DetailView):
         category_count = get_category_count()
         recent = Post.objects.order_by('-timestamp')[0:10]
 
-        category = get_object_or_404(Category, id=self.kwargs['pk'])
-        related_post = Post.objects.filter(categories=category)[0:24]
+        # category = get_object_or_404(Category, id=self.kwargs['pk'])
+        # related_post = Post.objects.filter(categories=category)[0:24]
 
         stuff = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = stuff.total_likes()
@@ -223,7 +223,7 @@ class PostDetailView(DetailView):
         context['form'] = self.form
         context['category_count'] = category_count
         context['recent'] = recent
-        context['related_post'] = related_post
+        # context['related_post'] = related_post
         context['total_likes'] = total_likes
         context['total_unlikes'] = total_unlikes
         context['liked'] = liked
