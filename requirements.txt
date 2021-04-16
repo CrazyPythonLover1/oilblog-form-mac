@@ -15,7 +15,7 @@ django-allauth==0.39.1
 django-class-auth-views==1.0.2
 django-countries==5.3.3
 django-crispy-forms==1.7.2
-django-debug-toolbar==1.10.1
+django-debug-toolbar==1.11.1
 dnspython==1.16.0
 env==0.1.0
 eventlet==0.25.2
