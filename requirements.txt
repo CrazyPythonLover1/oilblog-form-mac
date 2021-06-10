@@ -10,7 +10,7 @@ chardet==3.0.4
 colorama==0.4.3
 defusedxml==0.6.0
 dj-static==0.0.6
-Django==2.2.13
+Django==2.2.24
 django-allauth==0.39.1
 django-class-auth-views==1.0.2
 django-countries==5.3.3
